@@ -1,5 +1,5 @@
 
-
+import { Link } from "react-router-dom";
 export const Heros = () => {
 
     return (
@@ -24,9 +24,9 @@ export const Heros = () => {
                                 <a className='btn main-color btn-lg text-white' href="#">Sign up</a> */}
                                 <div className='d-grid gap-2 justify-content-md-start mb-4 mb-lg-3'>
                       
-                               <a href="#" type='button' className='btn main-color btn-lg px-4 me-md-2 fw-bold text-white'>
+                               <Link to="/search" type='button' className='btn main-color btn-lg px-4 me-md-2 fw-bold text-white'>
                                 Explore Top Books
-                               </a>   
+                               </Link>   
                       
                               <a className='btn main-color btn-lg text-white' href="#">
                                      Sign up
@@ -69,8 +69,8 @@ export const Heros = () => {
                                 we will be able to provide the top content for you!
                             </p>
                            
-                                <a type='button' className='btn main-color btn-lg text-white'
-                                    href="#">Explore top books</a>
+                                <Link type='button' className='btn main-color btn-lg text-white'
+                                    to="/search">Explore top books</Link>
                                
                                 <a className='btn main-color btn-lg text-white' href="#">Sign up</a>
                         

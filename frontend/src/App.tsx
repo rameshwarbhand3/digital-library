@@ -5,6 +5,7 @@ import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
 
 
 
@@ -12,8 +13,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 export const App = () => {
 
  return (
-  <div>
+  <div className='d-flex flex-column min-vh-100'>
   <Navbar/>
+  <div className='flex-grow-1'>
   <Switch>
 
       <Route path="/"exact>
@@ -28,7 +30,12 @@ export const App = () => {
         <SearchBooksPage/>
       </Route>  
 
+      <Route path="/checkout/:bookId">
+        <BookCheckoutPage/>
+      </Route>  
+
   </Switch>
+  </div>
   <Footer/>
   </div>
 

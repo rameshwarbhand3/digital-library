@@ -2,6 +2,7 @@ import { ReturnBook } from "./ReturnBook";
 import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { Link } from 'react-router-dom';
 
 export const Carousel = () => {
 
@@ -77,6 +78,7 @@ export const Carousel = () => {
                         <div className='row d-flex justify-content-center align-items-center'>
                             {books.slice(0, 3).map(book => (
                                 <ReturnBook book={book} key ={book.id} />
+                                
                             ))}
                         </div>
                     </div>
@@ -108,13 +110,13 @@ export const Carousel = () => {
             </div>
 
             {/* Mobile */}
-            <div className='d-lg-none mt-3'>
+            {/* <div className='d-lg-none mt-3'>
                 <div className='row d-flex justify-content-center align-items-center'>
                     <ReturnBook book={books[7]} key={books[7].id}/>
                 </div>
-            </div>
-            <div className='homepage-carousel-title mt-5'>
-                <a className='btn btn-outline-secondary btn-lg' href="#">View More</a>
+            </div> */}
+            <div className='homepage-carousel-title mt-3'>
+                <Link className='btn btn-outline-secondary btn-lg' to="/search">View More</Link>
             </div>
         </div>
     );

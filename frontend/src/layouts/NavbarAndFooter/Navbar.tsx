@@ -26,13 +26,13 @@ export const Navbar = () => {
             <NavLink className="nav-link" to="/search">Search Books</NavLink>
             </li>
             
-              <li className='nav-item'>
-                <a className='nav-a px-2 text-white' href="#">Shelf</a>
-              </li>
+            <li className='nav-item'>
+            <NavLink className="nav-link" to="/search">Shelf</NavLink>
+            </li>
             
-              <li className='nav-item'>
-                <a className='nav-a px-2 text-white' href="#">Admin</a>
-              </li>
+            <li className='nav-item'>
+            <NavLink className="nav-link" to="/search">Admin</NavLink>
+            </li>
             
           </ul>
           <ul className='navbar-nav ms-auto'>
