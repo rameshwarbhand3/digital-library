@@ -1,9 +1,18 @@
 
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useOktaAuth } from "@okta/okta-react";
+
 
 export const Navbar = () => {
 
+  const { oktaAuth, authState } = useOktaAuth();
+
+  if (!authState) {
+    return <SpinnerLoading />
+  }
+  const handleLogout = async () => oktaAuth.signOut();
+  console.log(authState);
 
   return (
     <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
@@ -19,32 +28,33 @@ export const Navbar = () => {
         <div className='collapse navbar-collapse' id='navbarNavDropdown'>
           <ul className='navbar-nav'>
 
-          <li className='nav-item'>
-            <NavLink className="nav-link" to="/home">Home</NavLink>
-          </li>
             <li className='nav-item'>
-            <NavLink className="nav-link" to="/search">Search Books</NavLink>
+              <NavLink className="nav-link" to="/home">Home</NavLink>
             </li>
-            
             <li className='nav-item'>
-            <NavLink className="nav-link" to="/#">Shelf</NavLink>
+              <NavLink className="nav-link" to="/search">Search Books</NavLink>
             </li>
-            
+
             <li className='nav-item'>
-            <NavLink className="nav-link" to="/#">Admin</NavLink>
+              <NavLink className="nav-link" to="/#">Shelf</NavLink>
             </li>
-            
+
+            <li className='nav-item'>
+              <NavLink className="nav-link" to="/#">Admin</NavLink>
+            </li>
+
           </ul>
           <ul className='navbar-nav ms-auto'>
-            
+            {
+            !authState.isAuthenticated ?
               <li className='nav-item m-1'>
-                <a type='button' className='btn btn-outline-light' href="#">Sign in</a>
+                <Link type='button' className='btn btn-outline-light' to={"/login"}>Sign in</Link>
               </li>
-              
+              :
               <li className='nav-item m-1'>
-                <a type='button'className='btn btn-outline-light' href="#">Logout</a>
+                <button className='btn btn-outline-light' onClick={handleLogout}>Logout</button>
               </li>
-            
+            }
           </ul>
         </div>
       </div>
