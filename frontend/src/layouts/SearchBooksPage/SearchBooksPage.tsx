@@ -31,6 +31,7 @@ export const SearchBooksPage = () => {
             }
 
             const response = await fetch(url);
+            console.log("Inside response");
 
             if (!response.ok) {
                 throw new Error('Something went wrong!');
