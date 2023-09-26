@@ -99,7 +99,7 @@ export const BookCheckoutPage = () => {
                 setTotalStars(Number(round));
             }
             setReviews(loadedReviews);
-            setIsLoading(false);
+            setIsLoadingReview(false);
         };
         fetchBookReviews().catch((error: any) => {
             setIsLoadingReview(false);

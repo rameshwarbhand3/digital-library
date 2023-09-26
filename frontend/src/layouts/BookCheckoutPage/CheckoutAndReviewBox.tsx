@@ -7,9 +7,9 @@ export const CheckoutAndReviewBox: React.FC <{book : BookModel | undefined,mobil
 function buttonRender () {
     if(props.isAuthenticated){
         if(!props.isCheckedout && props.currentLoansCount < 5){
-            return ( <button onClick={() => props.checkoutBook()} className="btn btn-success btn-lg">Checkout</button>);
+            return ( <button onClick={() => props.checkoutBook()} className="btn btn-success btn-lg">Checkout</button>)
         }else if(props.isCheckedout){
-            return (<p><b>Book checkedut.Enjoy</b></p>);
+            return (<p><b>Book checkedout.Enjoy</b></p>)
         }else if(!props.isCheckedout){
             return (<p className="text-danger">Too many book checkout.</p>)
         }
@@ -19,7 +19,7 @@ function buttonRender () {
 
 
     return(
-        <div className={props.mobile ? 'card d-flex mt-5' : 'card col-3 container d-flex mb-5'}>
+        <div className={props.mobile ? 'card d-flex mt-5' : 'card col-4 container d-flex mb-5'}>
             <div className="card-body container">
                 <div className="mt-3">
                     <p>
@@ -43,20 +43,18 @@ function buttonRender () {
                             copies
                         </p>
 
-                        <p className="col-6 lead">
+                        <p className="col-5 lead">
                             <b>{props.book?.copiesAvailable} </b>
                             available
                         </p>
                     </div>
                 </div>
-                {buttonRender()};
+                {buttonRender()}
                 <hr/>
                 <p className="mt-3">
                     This number can change until placing order has been complete.
                 </p>
-                <p>
-                    Sign in to be able to leave a review.
-                </p>
+                
             </div>
         </div>
     );
