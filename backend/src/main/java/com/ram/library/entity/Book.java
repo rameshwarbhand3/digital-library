@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name="book")
+@Table(name = "book")
 @Data
 public class Book {
     @Id
@@ -12,7 +12,7 @@ public class Book {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
     @Column(name = "author")
@@ -27,7 +27,7 @@ public class Book {
     @Column(name = "copies_Available")
     private int copiesAvailable;
 
-    @Column(name="category")
+    @Column(name = "category")
     private String category;
 
 
