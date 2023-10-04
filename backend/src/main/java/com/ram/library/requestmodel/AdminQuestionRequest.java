@@ -1,2 +1,9 @@
-package com.ram.library.requestmodel;public class AdminQuestionRequest {
+package com.ram.library.requestmodel;
+
+import lombok.Data;
+
+@Data
+public class AdminQuestionRequest {
+    private Long id;
+    private String response;
 }
