@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import ShelfCurrentLoans from '../../models/ShelfCurrentLoans';
 import { SpinnerLoading } from "../../layouts/Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
+import { LoanModel } from "./LoanModel";
+import { ReturnBook } from '../../layouts/HomePage/components/ReturnBook';
+import ReviewRequestModel from '../../models/ReviewRequestModel';
 
 
 export const Loans = () => {
@@ -12,7 +15,7 @@ export const Loans = () => {
     //current loans
     const [shelfCurrentLoans, setShelfCurrentLoans] = useState<ShelfCurrentLoans[]>([]);
     const [isLoadingUserLoans, setIsLoadingUserLoans] = useState(true);
-    
+    const [checkout , setCheckout] = useState(false);
 
 
     useEffect(() => {
@@ -43,7 +46,7 @@ export const Loans = () => {
         })
         window.scrollTo(0, 0);
 
-    }, [authState]);
+    }, [authState,checkout]);
 
     if (isLoadingUserLoans) {
         return (
@@ -59,6 +62,38 @@ export const Loans = () => {
             </div>
         )
 
+    }
+
+    async function returnBook(bookId: number) {
+        const url = `http://localhost:8080/api/books/secure/return?bookId=${bookId}`;
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        };
+        const returnResponse = await fetch(url, requestOptions);
+        if (!returnResponse.ok) {
+            throw new Error('Something went wrong!');
+        }
+        setCheckout(!checkout);
+    }
+
+    async function renewLoan(bookId: number) {
+        const url = `http://localhost:8080/api/books/secure/renewLoan?bookId=${bookId}`;
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        };
+        const renewResponse = await fetch(url, requestOptions);
+        if (!renewResponse.ok) {
+            throw new Error('Something went wrong!');
+        }
+        setCheckout(!checkout);
     }
 
     return (
@@ -121,7 +156,7 @@ export const Loans = () => {
                                     </div>
                                 </div>
                                 <hr />
-
+                                <LoanModel shelfCurrentLoan={shelfCurrentLoan} mobile={false} returnBook={returnBook} renewLoan={renewLoan}  />
                             </div>
                         ))}
                     </> :
