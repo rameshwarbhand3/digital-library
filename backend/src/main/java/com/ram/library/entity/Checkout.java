@@ -12,13 +12,16 @@ public class Checkout {
     @Column(name = "id")
     private Long id;
 
-    ;
+
     @Column(name = "user_email")
     private String userEmail;
+
     @Column(name = "checkout_Date")
     private String checkoutDate;
+
     @Column(name = "return_Date")
     private String returnDate;
+
     @Column(name = "book_id")
     private Long bookId;
 

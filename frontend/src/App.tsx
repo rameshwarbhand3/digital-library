@@ -14,6 +14,7 @@ import { ReviewListPage } from './layouts/BookCheckoutPage/ReviewListPage/Review
 import { ShelfPage } from './ShelfPage/ShelfPage';
 import { Messagespage } from './layouts/MessagesPage/MessagesPage';
 import { ManageLibraryPage } from './layouts/ManageLibraryPage/ManageLibraryPage';
+import { PaymentPage } from './layouts/PaymentPage/PaymentPage';
 
 
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -40,9 +41,11 @@ export const App = () => {
           <Route path='/' exact>
             <Redirect to='/home' />
           </Route>
+
           <Route path='/home'>
             <HomePage />
           </Route>
+
           <Route path='/search'>
             <SearchBooksPage />
           </Route>
@@ -54,6 +57,7 @@ export const App = () => {
           <Route path='/checkout/:bookId'>
             <BookCheckoutPage/>
           </Route>
+          
           <Route path='/login' render={
             () => <LoginWidget config={oktaConfig} /> 
             } 
@@ -66,6 +70,7 @@ export const App = () => {
 
           <SecureRoute path='/admin'><ManageLibraryPage/></SecureRoute>
 
+          <SecureRoute path='/fees'><PaymentPage/></SecureRoute>
 
           
         </Switch>
