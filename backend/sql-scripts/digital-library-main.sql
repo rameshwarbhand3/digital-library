@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `reactlibrarydatabase`;
-USE `reactlibrarydatabase`;
+CREATE DATABASE  IF NOT EXISTS `digital_library_db`;
+USE `digital_library_db`;
 
 DROP TABLE IF EXISTS `book`;
 

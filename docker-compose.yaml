@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:latest
+    volumes:
+     - digital-library-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: digital_library_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 127.0.0.1:3306:3306
+
+  api:
+    build: backend/.
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/digital_library_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      
+  app:
+    # build: frontend/.
+    image: digital-library-frontend
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - api  
+
+volumes:
+  digital-library-mysql-data:
